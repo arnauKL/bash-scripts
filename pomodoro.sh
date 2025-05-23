@@ -11,17 +11,6 @@ cleanup () {
     tput cnorm  # Makes cursor visible again
 }
 
-# Function to send a desktop notification
-notify() {
-    local title="$1"
-    local message="$2"
-    if command -v notify-send &> /dev/null; then
-        notify-send "$title" "$message"
-    else
-        echo "$title: $message"
-    fi
-}
-
 # Countdown timer function
 countdown() {
     local minutes=$1
@@ -31,9 +20,10 @@ countdown() {
         mins=$((seconds / 60))
         secs=$((seconds % 60))
         printf "\r%02d:%02d remaining..." "$mins" "$secs"
-        sleep 1
+        sleep 1 # I should get sth more accurate
         ((seconds--))
     done
+    clear
     echo ""
 }
 
@@ -41,16 +31,15 @@ countdown() {
 start_pomodoro() {
     for ((i = 1; i <= ROUNDS; i++)); do
         echo "Pomodoro $i: Focus for $FOCUS_DURATION minutes"
-        notify "Pomodoro $i" "Focus for $FOCUS_DURATION minutes!"
+        notify-send "Pomodoro $i" "Focus for $FOCUS_DURATION minutes"
         countdown $FOCUS_DURATION
 
         echo "Break time! Take $BREAK_DURATION minutes."
-        notify "Break Time" "Take $BREAK_DURATION minutes off!"
+        notify-send "Break Time" "Take $BREAK_DURATION minutes off"
         countdown $BREAK_DURATION
     done
 
-    echo "All Pomodoros complete!"
-    notify "Pomodoro Complete" "You've completed $ROUNDS Pomodoros!"
+    notify-send "Pomodoro Complete" "You've completed $ROUNDS Pomodoros!"
 }
 
 # Clear screen
@@ -58,8 +47,6 @@ start_pomodoro() {
 trap cleanup exit
 tput smcup
 tput civis  # Makes cursor invisible
-clear
+clear       # Clears screen
 start_pomodoro
 done
-
-printf '\n'
