@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-## Script to copy the last screenshot taken into the "assets" folder
-## so that it can be easily accessed in markdown, typst, etc.
+# Script to copy the last screenshot taken into the "assets" folder
+# so that it can be easily accessed in markdown, LaTeX, Typst, etc.
 #
 # First get the filename of the last image in the screenshots folder
 #
