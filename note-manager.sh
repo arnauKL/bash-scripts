@@ -3,10 +3,8 @@
 NOTES_DIRECTORY="$HOME/Notes/"
 
 case "$1" in
-    *"new"*)
-        cd $NOTES_DIRECTORY && nvim .
-        ;;
+    # For now
     *)
-        cd $NOTES_DIRECTORY && pwd
+        cd $NOTES_DIRECTORY && nvim .
         ;;
 esac
