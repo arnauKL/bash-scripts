@@ -25,6 +25,9 @@ dwl_dir="$HOME/Documentos/Projects/ak-DE/dwl-ak/dwl-colors.h"
 # Generate dwl colors
 wallust pywal -i "$1"
 
+# set background color back to black
+export BACKGROUND="#000000"
+
 ### dwl
 
 # Copy colors.h file generated from the template to dwl dir
@@ -38,3 +41,4 @@ cd "$HOME/Documentos/Projects/ak-DE/dwl-ak/" && make clean && make && sudo make 
 
 # tell when done
 notify-send "Colorscheme updated" "Restart session to view (Alt+Shift+Q)"
+

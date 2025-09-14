@@ -2,9 +2,11 @@
 
 NOTES_DIRECTORY="$HOME/Notes/"
 
-case "$1" in
-    # For now
-    *)
-        cd $NOTES_DIRECTORY && nvim .
-        ;;
-esac
+cd $NOTES_DIRECTORY 
+
+selected_file=$(fzf --preview 'cat {}')
+
+if [ -n "$selected_file" ]; then
+    nvim "$selected_file"
+fi
+
